@@ -39,6 +39,7 @@ class BankAccount
             System.out.println("1. ATM");
             System.out.println("2. Show Account Details");
             System.out.println("3. Update PIN");
+            System.out.println("4. Money Transfer");
             int choice = sc.nextInt();
             switch(choice)
             {
@@ -77,6 +78,11 @@ class BankAccount
                     }
                     else
                         System.out.println("Old Password is not correct");
+                    break;
+                case 4:
+                    MoneyTransfer transfer = new MoneyTransfer();
+                    transfer.transferAmount();
+                    break;
 
             }
             
