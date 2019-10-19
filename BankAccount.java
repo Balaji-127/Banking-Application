@@ -1,22 +1,24 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.io.Console;
 
 class BankAccount
 {
     Scanner sc = new Scanner(System.in);
     Random rand = new Random();
+    Console console = System.console();
     protected static int balance;
     private int accountNumber;
     private String pin, id;
     private String name; 
     void createAccount()
     {
+        
         System.out.print("Enter name : ");
         name = sc.next();
         System.out.print("Enter ID : ");
         id = sc.next();
-        System.out.print("Enter PIN : ");
-        pin = sc.next();
+        pin = new String(console.readPassword("Enter PIN : "));
         System.out.println("Generating accountNumber");
         accountNumber = rand.nextInt(1000);
         System.out.println("Your Account Number is "+ accountNumber);
@@ -30,8 +32,7 @@ class BankAccount
         System.out.println("Enter Login Credentials");
         System.out.print("Enter ID : ");
         uid = sc.next();
-        System.out.print("Enter PIN : ");
-        upin = sc.next();
+        upin = new String(console.readPassword("Enter PIN : "));
         if(uid.equals(id) && upin.equals(pin))
         {
             System.out.println("Login Successfull");
@@ -68,12 +69,10 @@ class BankAccount
                     break;
                 case 3:
                     String oldPass,newPass;
-                    System.out.println("Enter your old PIN : ");
-                    oldPass = sc.next();
+                    oldPass = new String(console.readPassword("Enter PIN : "));
                     if(oldPass.equals(pin))
                     {
-                        System.out.println("Enter your new PIN : ");
-                        newPass = sc.next();
+                        newPass = new String(console.readPassword("Enter PIN : "));
                         pin = newPass;
                     }
                     else
