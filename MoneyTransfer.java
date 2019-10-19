@@ -6,19 +6,21 @@ class MoneyTransfer extends BankAccount
     void transferAmount() 
     {
         int newAccountNumber;
-        System.out.println("Enter the account number to Transfer money");
+        System.out.print("Enter the Account Number to Transfer Money : ");
         newAccountNumber = sc.nextInt();
-        System.out.println("Enter the amount to Transfer");
+        System.out.print("Enter the amount to Transfer : ");
         int transferAmount = sc.nextInt();
         if(BankAccount.balance - transferAmount < 5000)
         {
-            System.out.println("Cannot transfer "+transferAmount);
-            System.out.println("Maximum amount can be transferred is " + (BankAccount.balance - transferAmount));
+            System.out.println("\nCannot transfer "+transferAmount);
+            System.out.println("Balance : "+BankAccount.balance);
+            System.out.println("Maximum amount can be transferred is " + (BankAccount.balance - 5000));
         }
         else  
         {
-            System.out.println("Transferring "+transferAmount+" to Account Number "+newAccountNumber);
+            System.out.println("\nTransferring "+transferAmount+" to Account Number "+newAccountNumber);
             BankAccount.balance -= transferAmount;
+            System.out.println("Balance : "+BankAccount.balance);
         }      
 	}
 }
