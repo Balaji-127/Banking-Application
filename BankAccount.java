@@ -8,17 +8,23 @@ class BankAccount
     Random rand = new Random();
     Console console = System.console();
     protected static int balance;
+    private String securityQuestion;
+    private String securityAnswer;
     private int accountNumber;
     private String pin, id;
     private String name; 
     void createAccount()
     {
-        
         System.out.print("\nEnter name : ");
         name = sc.next();
         System.out.print("Enter ID : ");
         id = sc.next();
         pin = new String(console.readPassword("Enter PIN : "));
+        sc.nextLine();
+        System.out.print("Enter your security question : ");
+        securityQuestion = sc.nextLine();
+        System.out.print("Enter your security Answer : ");
+        securityAnswer = sc.next();
         System.out.println("\nGenerating Account Number\n");
         accountNumber = rand.nextInt(1000);
         System.out.println("Your Account Number is "+ accountNumber);
@@ -30,6 +36,27 @@ class BankAccount
     {
         String uid,upin;
         System.out.println("\n\tLOGIN");
+
+        System.out.print("Reset Password? (y/Y) : ");
+        char changePassword = sc.next().charAt(0);
+        if(changePassword == 'y' || changePassword == 'Y')
+        {
+            System.out.println(securityQuestion);
+            System.out.print("Enter the answer : ");
+            String passwordAnswer = sc.next();
+            if(passwordAnswer.equals(securityAnswer))
+            {
+                String newPass = new String(console.readPassword("Enter New PIN : "));
+                pin = newPass;
+                System.out.println("\nPIN Updated");
+            }
+            else
+            {
+                System.out.println("The Answer if Wrong");
+                login();
+            }
+        }
+
         System.out.print("Enter ID : ");
         uid = sc.next();
         boolean flag = true;
