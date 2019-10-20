@@ -36,29 +36,6 @@ class BankAccount
     {
         String uid,upin;
         System.out.println("\n\tLOGIN");
-
-        System.out.print("Reset Password? (y/Y) : ");
-        char changePassword = sc.next().charAt(0);
-        if(changePassword == 'y' || changePassword == 'Y')
-        {
-            System.out.println("\n\tQUESTION");
-            System.out.println(securityQuestion);
-            System.out.println("\n\tANSWER");
-            System.out.print("Enter the answer : ");
-            String passwordAnswer = sc.next();
-            if(passwordAnswer.equals(securityAnswer))
-            {
-                String newPass = new String(console.readPassword("Enter New PIN : "));
-                pin = newPass;
-                System.out.println("\nPIN Updated");
-            }
-            else
-            {
-                System.out.println("The Answer if Wrong");
-                login();
-            }
-        }
-
         System.out.print("Enter ID : ");
         uid = sc.next();
         boolean flag = true;
@@ -137,10 +114,39 @@ class BankAccount
         else
         {
             System.out.println("\nLogin Failed.");
-            System.out.print("Try Again? y/Y : ");
-            char c = sc.next().charAt(0);
-            if(c=='y' || c=='Y')
-                login();
+            System.out.println("1. Try Again");    
+            System.out.println("2. Reset password");
+            int ch = sc.nextInt();
+            String passwordAnswer;
+            switch(ch)
+            {
+                case 1:
+                    login();   
+                    break;
+                case 2:
+                    do
+                    {
+
+                        System.out.println("\n\tQUESTION");
+                        System.out.println(securityQuestion);
+                        System.out.println("\n\tANSWER");
+                        System.out.print("Enter the answer : ");
+                        passwordAnswer = sc.next();
+                        if(passwordAnswer.equals(securityAnswer))
+                        {
+                            String newPass = new String(console.readPassword("Enter New PIN : "));
+                            pin = newPass;
+                            System.out.println("\nPIN Updated");
+                            login();
+                        }
+                        else
+                        {
+                            System.out.println("The Answer if Wrong");
+                        }
+                    }while(!passwordAnswer.equals(securityAnswer));
+                    break;
+            }    
+
         }
     }
 }
