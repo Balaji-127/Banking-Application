@@ -41,7 +41,9 @@ class BankAccount
         char changePassword = sc.next().charAt(0);
         if(changePassword == 'y' || changePassword == 'Y')
         {
+            System.out.println("\n\tQUESTION");
             System.out.println(securityQuestion);
+            System.out.println("\n\tANSWER");
             System.out.print("Enter the answer : ");
             String passwordAnswer = sc.next();
             if(passwordAnswer.equals(securityAnswer))
